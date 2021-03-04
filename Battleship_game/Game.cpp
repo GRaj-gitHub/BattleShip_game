@@ -1,28 +1,43 @@
 #include <iostream>
+#include <iomanip>
 #include "Game.h"
 using namespace std;
 
-int battle_ground[10][10];
+char battle_ground[10][10];
 char display_ground[10][10];
 int ship_size = 5;
 int destroyer_size = 2;
 bool game_over = false;
 
+void test()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
 
+			cout << battle_ground[i][j] << "  ";
+		}
+		cout << endl;
+	}
+}
 
 int main()
 {
 	
+	char option;
 	int row_input, col_input;
 	int count, winvalue;
 	for (int i = 0; i < 10; i++)
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			battle_ground[i][j] = 0;
+			battle_ground[i][j] = 'X';
 			display_ground[i][j] = 'X';
 		}
 	}
+	cout << setw(65) << "Battle-Ship Game" << endl;
+	
 	srand((unsigned)time(0));
 	for (int i = 0; i < 2; i++)
 	{
@@ -35,15 +50,25 @@ int main()
 	
 	while (game_over == false)
 	{
-		cout << "enter row" << endl;
+		cout << "enter row: ";
 		cin >> row_input;
-		cout << endl << "enter col" << endl;
+		cout << endl << "enter col: ";
 		cin >> col_input;
 		cout << endl;
 		display_field(&row_input, &col_input, &count);
 		if (count == 18)
 		{
 			cout << endl << "YOU WIN !!";
+			break;
+		}
+		cout << endl << "press y to conitnue and q to quit ";
+		cin >> option;
+		switch (option)
+		{
+		case 'q':	cout << endl << "original battle ground: " << endl;
+					test();
+					break;
+		case 'y':	break;
 		}
 	} 
 	
@@ -62,7 +87,7 @@ void ship_generator()
 		int temp = s_row;
 		for (int i = 0; i < ship_size; i++)
 		{
-			if (battle_ground[temp][s_col] != 0)
+			if (battle_ground[temp][s_col] != 'X')
 			{
 				flag = true;
 				break;
@@ -73,7 +98,7 @@ void ship_generator()
 		{
 			for (int i = 0; i < ship_size; i++)
 			{
-				battle_ground[s_row][s_col] = 1;
+				battle_ground[s_row][s_col] = 'S';
 				s_row++;
 
 			}
@@ -91,7 +116,7 @@ void ship_generator()
 		int temp = s_col;
 		for (int i = 0; i < ship_size; i++)
 		{
-			if (battle_ground[s_row][temp] != 0)
+			if (battle_ground[s_row][temp] != 'X')
 			{
 				flag = true;
 				break;
@@ -102,7 +127,7 @@ void ship_generator()
 		{
 			for (int i = 0; i < ship_size; i++)
 			{
-				battle_ground[s_row][s_col] = 1;
+				battle_ground[s_row][s_col] = 'S';
 				s_col++;
 			}
 		}
@@ -131,7 +156,7 @@ void des_gen()
 		int temp = s_row;
 		for (int i = 0; i < destroyer_size; i++)
 		{
-			if (battle_ground[temp][s_col] != 0)
+			if (battle_ground[temp][s_col] != 'X')
 			{
 				flag = true;
 				break;
@@ -143,7 +168,7 @@ void des_gen()
 		{
 			for (int i = 0; i < destroyer_size; i++)
 			{
-				battle_ground[s_row][s_col] = 2;
+				battle_ground[s_row][s_col] = 'D';
 				s_row++;
 
 			}
@@ -160,7 +185,7 @@ void des_gen()
 		int temp = s_col;
 		for (int i = 0; i < destroyer_size; i++)
 		{
-			if (battle_ground[s_row][temp] != 0)
+			if (battle_ground[s_row][temp] != 'X')
 			{
 				flag = true;
 				break;
@@ -172,7 +197,7 @@ void des_gen()
 		{
 			for (int i = 0; i < destroyer_size; i++)
 			{
-				battle_ground[s_row][s_col] = 2;
+				battle_ground[s_row][s_col] = 'D';
 				s_col++;
 
 			}
@@ -189,17 +214,17 @@ void des_gen()
 int display_field(int* row_input, int* col_input, int* count)
 {
 
-	if (battle_ground[*row_input][*col_input] == 0)
+	if (battle_ground[*row_input][*col_input] == 'X')
 	{
 		display_ground[*row_input][*col_input] = 'O';
 		
 	}
-	if (battle_ground[*row_input][*col_input] == 1)
+	if (battle_ground[*row_input][*col_input] == 'S')
 	{
 		display_ground[*row_input][*col_input] = 'S';
 		*count++;
 	}
-	else if (battle_ground[*row_input][*col_input] == 2)
+	else if (battle_ground[*row_input][*col_input] == 'D')
 	{
 		display_ground[*row_input][*col_input] = 'D';
 		*count++;
