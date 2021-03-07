@@ -59,6 +59,7 @@ int main()
 		if (count == 18)
 		{
 			cout << endl << "YOU WIN !!";
+			game_over = true;
 			break;
 		}
 		cout << endl << "press y to conitnue and q to quit ";
@@ -67,6 +68,7 @@ int main()
 		{
 		case 'q':	cout << endl << "original battle ground: " << endl;
 					test();
+					game_over = true;
 					break;
 		case 'y':	break;
 		}

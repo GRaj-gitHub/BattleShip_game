@@ -1,3 +1,2 @@
-﻿  Game.cpp
-D:\GIt\BattleShip_game\Battleship_game\Game.cpp(30,13): warning C4101: 'winvalue': unreferenced local variable
+﻿  LINK : program database D:\GIt\BattleShip_game\Battleship_game\Debug\Battleship_game.pdb missing; performing full link
   Battleship_game.vcxproj -> D:\GIt\BattleShip_game\Battleship_game\Debug\Battleship_game.exe

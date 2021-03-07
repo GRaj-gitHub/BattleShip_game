@@ -1,2 +1,1 @@
 D:\GIt\BattleShip_game\Battleship_game\Debug\Battleship_game.exe
-D:\GIt\BattleShip_game\Battleship_game\Debug\Battleship_game.pdb
